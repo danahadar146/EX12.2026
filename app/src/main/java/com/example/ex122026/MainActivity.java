@@ -14,8 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener {
 
-    Button shortBtn,longBtn;
-    int i;
+    Button shortBtn,longBtn,finish;
+    int longMone;
+    int shortMone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,14 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
         shortBtn=(Button) findViewById(R.id.shortBtn);
         longBtn=(Button) findViewById(R.id.longBtn);
-        i=0;
+        finish=(Button) findViewById(R.id.finish);
+        longMone=0;
+        shortMone=0;
 
         shortBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i++;
+                shortMone++;
             }
         });
 
@@ -39,13 +42,21 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     @Override
     public boolean onLongClick(View v) {
-        i+=2;
+        longMone+=2;
         return true;
     }
 
     public void goWithData(View view){
     Intent si=new Intent(this,SecondActivity.class);
-    si.putExtra("yes",i);
+    si.putExtra("red",longMone);
+    si.putExtra("blue",shortMone);
+    startActivity(si);
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        longMone=0;
+        shortMone=0;
     }
 }

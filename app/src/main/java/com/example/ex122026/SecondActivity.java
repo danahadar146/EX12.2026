@@ -7,13 +7,11 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SecondActivity extends AppCompatActivity {
 
-    TextView tv;
+    TextView tvWin,tvRed,tvBlue;
+    Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +19,26 @@ public class SecondActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_second);
 
-        tv= (TextView) findViewById(R.id.tv);
-        Intent si=getIntent();
-        int x=si.getIntExtra("yes",0);
+        tvWin= (TextView) findViewById(R.id.tvWin);
+        tvRed= (TextView) findViewById(R.id.tvRed);
+        tvBlue= (TextView) findViewById(R.id.tvBlue);
+        reset=(Button) findViewById(R.id.reset);
 
-        tv.setText(""+x);
+        Intent si=getIntent();
+        int red=si.getIntExtra("red",0);
+        int blue=si.getIntExtra("blue",0);
+
+        tvRed.setText(""+red);
+        tvBlue.setText(""+blue);
+        if (red>blue){
+            tvWin.setText("Red won the game!");
+        }
+        else if(red==blue){
+            tvWin.setText("Its a tie!");
+        }
+        else{
+            tvWin.setText("Blue won the game!");
+        }
+        finish();
     }
 }
