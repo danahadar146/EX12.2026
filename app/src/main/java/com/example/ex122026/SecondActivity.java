@@ -2,6 +2,7 @@ package com.example.ex122026;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,8 +29,8 @@ public class SecondActivity extends AppCompatActivity {
         int red=si.getIntExtra("red",0);
         int blue=si.getIntExtra("blue",0);
 
-        tvRed.setText(""+red);
-        tvBlue.setText(""+blue);
+        tvRed.setText("red: "+red);
+        tvBlue.setText("blue: "+blue);
         if (red>blue){
             tvWin.setText("Red won the game!");
         }
@@ -39,6 +40,11 @@ public class SecondActivity extends AppCompatActivity {
         else{
             tvWin.setText("Blue won the game!");
         }
-        finish();
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }
